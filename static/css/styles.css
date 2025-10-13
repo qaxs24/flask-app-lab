@@ -1,5 +1,11 @@
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 section {
@@ -10,4 +16,8 @@ h2 {
     border-bottom: 2px solid #0d6efd;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+}
+
+.container {
+    flex: 1 0 auto;
 }
