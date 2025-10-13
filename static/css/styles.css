@@ -3,9 +3,15 @@ html, body {
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
     display: flex;
     flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
 }
 
 section {
@@ -22,11 +28,55 @@ h2 {
     flex: 1 0 auto;
 }
 
+.content-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
 .profile-img {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    object-position: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 5px solid #fff;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+.skills-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.skills-list li {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.skills-list i {
+    color: #007bff;
+    margin-right: 15px;
+    width: 20px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    transition: color 0.3s ease;
+}
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffffff;
+}
+
+footer {
+    flex-shrink: 0;
 }
