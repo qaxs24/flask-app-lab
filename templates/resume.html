@@ -1,128 +1,128 @@
-    {% extends "base.html" %}
+{% extends "base.html" %}
 
-    {% block content %}
-    <div class="row">
-        <aside class="col-lg-4 col-md-5">
-            <div class="card sticky-top">
-                <div class="card-body text-center">
-                    <img src="{{ url_for('static', filename='images/my-photo.jpg') }}" class="profile-img mb-3" alt="Моє фото">
-                    <h3 class="card-title">Олійник Іван</h3>
-                    <p class="text-muted">Full-Stack Developer</p>
-                </div>
-                <div class="list-group list-group-flush">
-                    <a href="#about" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-user me-2"></i>Про себе
-                    </a>
-                    <a href="#experience" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-briefcase me-2"></i>Досвід та Проекти
-                    </a>
-                    <a href="#technologies" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-microchip me-2"></i>Технології
-                    </a>
-                    <a href="#skills" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-screwdriver-wrench me-2"></i>Ключові навички
-                    </a>
-                    <a href="#education" class="list-group-item list-group-item-action">
-                        <i class="fa-solid fa-graduation-cap me-2"></i>Освіта
-                    </a>
+{% block content %}
+<div class="row">
+    <aside class="col-lg-4 col-md-5">
+        <div class="card sticky-top">
+            <div class="card-body text-center">
+                <img src="{{ url_for('static', filename='images/my-photo.jpg') }}" class="profile-img mb-3" alt="Моє фото">
+                <h3 class="card-title">Олійник Іван</h3>
+                <p class="text-muted">Full-Stack Developer</p>
+            </div>
+            <div class="list-group list-group-flush">
+                <a href="#about" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-user me-2"></i>Про себе
+                </a>
+                <a href="#experience" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-briefcase me-2"></i>Досвід та Проекти
+                </a>
+                <a href="#technologies" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-microchip me-2"></i>Технології
+                </a>
+                <a href="#skills" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-screwdriver-wrench me-2"></i>Ключові навички
+                </a>
+                <a href="#education" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-graduation-cap me-2"></i>Освіта
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="col-lg-8 col-md-7">
+        <section id="about" class="content-card mb-4">
+            <h2 class="section-title">Про себе</h2>
+            <p>Студент 3-го курсу за спеціальністю "Інженерія програмного забезпечення", захоплений ідеєю Full-stack розробки. Мене приваблює можливість створювати повноцінні веб-продукти, поєднуючи логіку серверної частини та зручність клієнтського інтерфейсу. Наразі активно розвиваю навички в Back-end розробці з використанням Python та Node.js, а для Front-end поглиблено вивчаю React та Next.js. Готовий застосовувати свої знання для вирішення практичних задач та створення гнучких цифрових рішень.</p>
+        </section>
+
+        <section id="experience" class="content-card mb-4">
+            <h2 class="section-title">Досвід та Проекти</h2>
+            
+            <div class="mb-4">
+                <h5>Веб-сайт для будівельної компанії <span class="badge bg-primary">Комерційний досвід</span></h5>
+                <p>Розробив корпоративний сайт, який допоміг компанії представити свої послуги та проекти в онлайні. Працював як Full-stack розробник, відповідаючи за весь цикл створення продукту.</p>
+                <ul>
+                    <li>Створив динамічну галерею для демонстрації об'єктів.</li>
+                    <li>Реалізував контактну форму для отримання запитів від клієнтів.</li>
+                    <li>Забезпечив адаптивну верстку для коректного відображення на мобільних пристроях.</li>
+                </ul>
+                <div class="mt-3">
+                    <strong>Стек:</strong>
+                    <span class="tech-icon"><i class="devicon-react-original"></i> React</span>
+                    <span class="tech-icon"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                    <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
                 </div>
             </div>
-        </aside>
 
-        <main class="col-lg-8 col-md-7">
-            <section id="about" class="content-card mb-4">
-                <h2 class="section-title">Про себе</h2>
-                <p>Студент 3-го курсу за спеціальністю "Інженерія програмного забезпечення", захоплений ідеєю Full-stack розробки. Мене приваблює можливість створювати повноцінні веб-продукти, поєднуючи логіку серверної частини та зручність клієнтського інтерфейсу. Наразі активно розвиваю навички в Back-end розробці з використанням Python та Node.js, а для Front-end поглиблено вивчаю React та Next.js. Готовий застосовувати свої знання для вирішення практичних задач та створення гнучких цифрових рішень.</p>
-            </section>
-
-            <section id="experience" class="content-card mb-4">
-                <h2 class="section-title">Досвід та Проекти</h2>
-                
-                <div class="mb-4">
-                    <h5>Веб-сайт для будівельної компанії <span class="badge bg-primary">Комерційний досвід</span></h5>
-                    <p>Розробив корпоративний сайт, який допоміг компанії представити свої послуги та проекти в онлайні. Працював як Full-stack розробник, відповідаючи за весь цикл створення продукту.</p>
-                    <ul>
-                        <li>Створив динамічну галерею для демонстрації об'єктів.</li>
-                        <li>Реалізував контактну форму для отримання запитів від клієнтів.</li>
-                        <li>Забезпечив адаптивну верстку для коректного відображення на мобільних пристроях.</li>
-                    </ul>
-                    <div class="mt-3">
-                        <strong>Стек:</strong>
-                        <span class="tech-icon"><i class="devicon-react-original"></i> React</span>
-                        <span class="tech-icon"><i class="devicon-nodejs-plain"></i> Node.js</span>
-                        <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
-                    </div>
-                </div>
-
-                <div class="mb-4">
-                    <h5>Telegram-боти для бізнесу</h5>
-                    <p>Створив та запустив декілька інформаційних ботів, що дозволило автоматизувати комунікацію з клієнтами 24/7. Боти надавали відповіді на поширені запитання та збирали базові заявки.</p>
-                    <ul>
-                        <li>Знизив навантаження на менеджерів, автоматизувавши рутинні запити.</li>
-                        <li>Розробив гнучку архітектуру для легкого додавання нових функцій.</li>
-                    </ul>
-                    <div class="mt-3">
-                        <strong>Стек:</strong>
-                        <span class="tech-icon"><i class="devicon-python-plain"></i> Python</span>
-                        <span class="tech-icon"><i class="fa-solid fa-code-merge"></i> REST API</span>
-                    </div>
-                </div>
-            </section>
-
-            <section id="technologies" class="content-card mb-4">
-                <h2 class="section-title">Технології</h2>
-                <div class="tech-grid">
-                    <div class="tech-category">
-                        <h5>Front-End</h5>
-                        <div class="d-flex flex-wrap">
-                            <span class="tech-icon"><i class="devicon-html5-plain"></i> HTML</span>
-                            <span class="tech-icon"><i class="devicon-css3-plain"></i> CSS</span>
-                            <span class="tech-icon"><i class="devicon-javascript-plain"></i> JavaScript</span>
-                            <span class="tech-icon"><i class="devicon-react-original"></i> React</span>
-                            <span class="tech-icon"><i class="devicon-angularjs-plain"></i> Angular</span>
-                            <span class="tech-icon"><i class="devicon-bootstrap-plain"></i> Bootstrap</span>
-                        </div>
-                    </div>
-                    <div class="tech-category">
-                        <h5>Back-End</h5>
-                        <div class="d-flex flex-wrap">
-                            <span class="tech-icon"><i class="devicon-python-plain"></i> Python</span>
-                            <span class="tech-icon"><i class="devicon-nodejs-plain"></i> Node.js</span>
-                            <span class="tech-icon"><i class="devicon-php-plain"></i> PHP</span>
-                        </div>
-                    </div>
-                    <div class="tech-category">
-                        <h5>Бази даних та інструменти</h5>
-                        <div class="d-flex flex-wrap">
-                            <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
-                            <span class="tech-icon"><i class="devicon-git-plain"></i> Git</span>
-                            <span class="tech-icon"><i class="devicon-docker-plain"></i> Docker</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills" class="content-card mb-4">
-                <h2 class="section-title">Ключові навички</h2>
-                <ul class="list-unstyled">
-                    <li><i class="fa-solid fa-code-merge text-primary me-2"></i>Розробка REST API</li>
-                    <li><i class="fa-solid fa-mobile-screen-button text-primary me-2"></i>Верстка адаптивних та крос-браузерних веб-сторінок</li>
-                    <li><i class="fa-solid fa-database text-primary me-2"></i>Робота з реляційними базами даних (SQL)</li>
-                    <li><i class="fa-brands fa-git-alt text-primary me-2"></i>Система контролю версій (Git)</li>
-                    <li><i class="fa-solid fa-cubes text-primary me-2"></i>Об'єктно-орієнтоване програмування (ООП)</li>
-                    <li><i class="fa-solid fa-language text-primary me-2"></i>Англійська мова (Intermediate)</li>
-                    <li><i class="fa-solid fa-puzzle-piece text-primary me-2"></i>Вирішення проблем, командна робота, швидке навчання</li>
+            <div class="mb-4">
+                <h5>Telegram-боти для бізнесу</h5>
+                <p>Створив та запустив декілька інформаційних ботів, що дозволило автоматизувати комунікацію з клієнтами 24/7. Боти надавали відповіді на поширені запитання та збирали базові заявки.</p>
+                <ul>
+                    <li>Знизив навантаження на менеджерів, автоматизувавши рутинні запити.</li>
+                    <li>Розробив гнучку архітектуру для легкого додавання нових функцій.</li>
                 </ul>
-            </section>
-            
-            <section id="education" class="content-card mb-4">
-                <h2 class="section-title">Освіта</h2>
-                <h5>Карпатський національний університет імені Василя Стефаника</h5>
-                <p class="text-muted">2023 - 2027</p>
-                <p><strong>Спеціальність:</strong> Інженерія програмного забезпечення</p>
-                <p>В рамках університетської програми успішно реалізував низку лабораторних та практичних робіт, що дозволило отримати міцне розуміння фундаментальних концепцій програмування, структур даних та алгоритмів.</p>
-            </section>
+                <div class="mt-3">
+                    <strong>Стек:</strong>
+                    <span class="tech-icon"><i class="devicon-python-plain"></i> Python</span>
+                    <span class="tech-icon"><i class="fa-solid fa-code-merge"></i> REST API</span>
+                </div>
+            </div>
+        </section>
 
-        </main>
-    </div>
-    {% endblock %}
+        <section id="technologies" class="content-card mb-4">
+            <h2 class="section-title">Технології</h2>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h5>Front-End</h5>
+                    <div class="d-flex flex-wrap">
+                        <span class="tech-icon"><i class="devicon-html5-plain"></i> HTML</span>
+                        <span class="tech-icon"><i class="devicon-css3-plain"></i> CSS</span>
+                        <span class="tech-icon"><i class="devicon-javascript-plain"></i> JavaScript</span>
+                        <span class="tech-icon"><i class="devicon-react-original"></i> React</span>
+                        <span class="tech-icon"><i class="devicon-angularjs-plain"></i> Angular</span>
+                        <span class="tech-icon"><i class="devicon-bootstrap-plain"></i> Bootstrap</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h5>Back-End</h5>
+                    <div class="d-flex flex-wrap">
+                        <span class="tech-icon"><i class="devicon-python-plain"></i> Python</span>
+                        <span class="tech-icon"><i class="devicon-nodejs-plain"></i> Node.js</span>
+                        <span class="tech-icon"><i class="devicon-php-plain"></i> PHP</span>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h5>Бази даних та інструменти</h5>
+                    <div class="d-flex flex-wrap">
+                        <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
+                        <span class="tech-icon"><i class="devicon-git-plain"></i> Git</span>
+                        <span class="tech-icon"><i class="devicon-docker-plain"></i> Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-card mb-4">
+            <h2 class="section-title">Ключові навички</h2>
+            <ul class="list-unstyled">
+                <li><i class="fa-solid fa-code-merge text-primary me-2"></i>Розробка REST API</li>
+                <li><i class="fa-solid fa-mobile-screen-button text-primary me-2"></i>Верстка адаптивних та крос-браузерних веб-сторінок</li>
+                <li><i class="fa-solid fa-database text-primary me-2"></i>Робота з реляційними базами даних (SQL)</li>
+                <li><i class="fa-brands fa-git-alt text-primary me-2"></i>Система контролю версій (Git)</li>
+                <li><i class="fa-solid fa-cubes text-primary me-2"></i>Об'єктно-орієнтоване програмування (ООП)</li>
+                <li><i class="fa-solid fa-language text-primary me-2"></i>Англійська мова (Intermediate)</li>
+                <li><i class="fa-solid fa-puzzle-piece text-primary me-2"></i>Вирішення проблем, командна робота, швидке навчання</li>
+            </ul>
+        </section>
+        
+        <section id="education" class="content-card mb-4">
+            <h2 class="section-title">Освіта</h2>
+            <h5>Карпатський національний університет імені Василя Стефаника</h5>
+            <p class="text-muted">2023 - 2027</p>
+            <p><strong>Спеціальність:</strong> Інженерія програмного забезпечення</p>
+            <p>В рамках університетської програми успішно реалізував низку лабораторних та практичних робіт, що дозволило отримати міцне розуміння фундаментальних концепцій програмування, структур даних та алгоритмів.</p>
+        </section>
+
+    </main>
+</div>
+{% endblock %}
