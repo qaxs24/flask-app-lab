@@ -1,3 +1,15 @@
+:root {
+    --navbar-height: 56px;
+}
+
+html {
+    scroll-padding-top: var(--navbar-height);
+}
+
+.card.sticky-top {
+    top: calc(var(--navbar-height) + 20px);
+}
+
 html, body {
     height: 100%;
 }
@@ -95,4 +107,37 @@ h2 {
 
 .footer-social-links a:hover {
     color: #ffffff;
+}
+
+.tech-category {
+    margin-bottom: 1.5rem;
+}
+
+.tech-icon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    margin: 0.25rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.tech-icon:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+    transform: translateY(-2px);
+}
+
+.tech-icon i {
+    font-size: 1.5em;
+    margin-right: 0.5rem;
+    color: #495057;
+}
+
+#skills ul li {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
 }
