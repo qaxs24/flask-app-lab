@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4 text-center">
+        <img src="{{ url_for('static', filename='images/my_photo.jpg') }}" class="img-fluid rounded-circle mb-3" alt="Моє фото">
+        <h3>Олійник Іван</h3>
+        <p class="text-muted">Веб-розробник</p>
+    </div>
+    <div class="col-md-8">
+        <section id="about">
+            <h2>Про себе</h2>
+            <p>...</p>
+        </section>
+        <section id="skills">
+            <h2>Навички</h2>
+            <ul>
+                <li>HTML, CSS, JavaScript</li>
+                <li>Python, Flask</li>
+                <li>Git, Docker</li>
+            </ul>
+        </section>
+        <section id="experience">
+            <h2>Досвід роботи / Проекти</h2>
+            <p>...</p>
+        </section>
+    </div>
+</div>
+{% endblock %}
