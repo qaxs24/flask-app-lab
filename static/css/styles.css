@@ -231,12 +231,10 @@ h1, h2, h3, h4, h5, h6 {
         padding-bottom: 1rem;
     }
 
-    /* Новий стиль для центрування */
     .main-navbar .navbar-collapse .nav-item {
         text-align: center;
     }
 
-    /* Стилі для посилань (без підкреслення) */
     .main-navbar .navbar-collapse .nav-link {
         color: rgba(255, 255, 255, 0.6);
         font-weight: 500;
@@ -244,7 +242,6 @@ h1, h2, h3, h4, h5, h6 {
         transition: color 0.2s ease;
     }
 
-    /* Активне посилання (без підкреслення) */
     .main-navbar .navbar-collapse .nav-link.active {
         color: #ffffff;
         font-weight: 700;
