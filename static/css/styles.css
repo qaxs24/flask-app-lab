@@ -11,11 +11,11 @@
     --font-primary: 'Montserrat', sans-serif;
     --font-secondary: 'Roboto', sans-serif;
     --base-font-size: 1rem;
-    --h2-font-size: 1.75rem;
 
     --navbar-height: 56px;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
+    --spacing-xl: 20px;
     --logo-height: 40px;
 
     --border-radius: 8px;
@@ -42,7 +42,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-primary);
 }
 
-h2.section-title,
 .section-title {
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: calc(var(--spacing-md) / 2);
@@ -65,7 +64,7 @@ section {
 }
 
 .card.sticky-top {
-    top: calc(var(--navbar-height) + 20px);
+    top: calc(var(--navbar-height) + var(--spacing-xl));
 }
 
 .navbar-brand .logo-img {
@@ -140,19 +139,18 @@ section {
 .tech-category {
     margin-bottom: 1.5rem;
 }
-.skills-list,
+
 #skills ul {
     list-style-type: none;
     padding-left: 0;
 }
 
-.skills-list li,
 #skills ul li {
     font-size: 1.1rem;
     margin-bottom: 0.75rem;
 }
 
-.skills-list i {
+#skills ul li i {
     color: var(--primary-color);
     margin-right: 15px;
     width: 20px;
