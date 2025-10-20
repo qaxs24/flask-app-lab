@@ -251,3 +251,47 @@ h1, h2, h3, h4, h5, h6 {
         color: #ffffff;
     }
 }
+
+.light {
+    background-color: #ffffff;
+    color: #212529;
+}
+
+.light .card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.dark {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+.dark .card {
+    background-color: #343a40;
+    border: 1px solid #495057;
+    color: #f8f9fa;
+}
+
+.dark .table {
+    color: #f8f9fa;
+}
+
+.dark .table-dark {
+    --bs-table-bg: #495057;
+}
+
+.dark label, .dark h2, .dark h4, .dark h5, .dark p {
+    color: #f8f9fa;
+}
+
+.dark .form-control {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.dark .form-control:focus {
+    background-color: #495057;
+    color: #f8f9fa;
+}
