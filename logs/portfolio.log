@@ -6,3 +6,6 @@
 2025-10-30 02:08:54,568 INFO: New contact form submission from Іван (ivan.oliinyk.23@pnu.edu.ua): test [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\portfolio\views.py:17]
 2025-10-30 02:09:19,406 INFO: New contact form submission from ivan (ivan.oliinyk.23@pnu.edu.ua): tsst [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\portfolio\views.py:17]
 2025-10-30 02:10:09,661 INFO: New contact form submission from gert (gefgd@ggdfail.com): gdfg [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\portfolio\views.py:17]
+2025-10-30 02:14:17,409 INFO: Portfolio startup [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\__init__.py:28]
+2025-10-30 16:06:51,160 INFO: Portfolio startup [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\__init__.py:28]
+2025-10-30 16:06:51,408 INFO: Portfolio startup [in C:\Labels\Labs\webpython\flask_app_oliinyk\app\__init__.py:28]
