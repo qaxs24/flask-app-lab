@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="">
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Видалити пост</legend>
+                <h2>Ви впевнені, що хочете видалити пост "{{ post.title }}"?</h2>
+            </fieldset>
+            <div class="form-group">
+                <input class="btn btn-danger" type="submit" value="Так, видалити">
+                <a class="btn btn-secondary" href="{{ url_for('post.detail_post', id=post.id) }}">Скасувати</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

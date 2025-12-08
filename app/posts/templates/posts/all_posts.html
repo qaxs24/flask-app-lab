@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('post.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="mb-3">Всі пости</h1>
+<a href="{{ url_for('post.create_post') }}" class="btn btn-primary mb-3">Add Post</a>
+{% for post in posts %}
+    <div class="card mb-3 post-card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='images/default.jpg') }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ url_for('post.detail_post', id=post.id) }}">{{ post.title }}</a></h5>
+                    <p class="card-text">{{ post.content[:100] }}...</p>
+                    <p class="card-text"><small class="text-muted">Posted on {{ post.posted.strftime('%Y-%m-%d') }} by {{ post.author }}</small></p>
+                    <span class="badge bg-secondary">{{ post.category.value }}</span>
+                    {% if not post.is_active %}
+                        <span class="badge bg-warning text-dark">Inactive</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

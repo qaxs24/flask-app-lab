@@ -1,6 +1,8 @@
 from flask import render_template, redirect, url_for, flash, current_app
 from app.portfolio import portfolio_bp
 from app.forms import ContactForm
+from app import db
+from app.models import Feedback
 
 @portfolio_bp.route('/')
 @portfolio_bp.route('/resume')
@@ -13,6 +15,16 @@ def contacts():
     if form.validate_on_submit():
         name = form.name.data
         email = form.email.data
+        
+        feedback = Feedback(
+            name=name,
+            email=email,
+            phone=form.phone.data,
+            subject=form.subject.data,
+            message=form.message.data
+        )
+        db.session.add(feedback)
+        db.session.commit()
         
         current_app.logger.info(f"New contact form submission from {name} ({email}): {form.message.data}")
         

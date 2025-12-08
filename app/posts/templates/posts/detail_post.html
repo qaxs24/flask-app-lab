@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('post.static', filename='css/posts.css') }}">
+{% endblock %}
+
+{% block content %}
+<article class="media content-section">
+  <div class="media-body">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='images/default.jpg') }}" alt="image">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ post.author }}</a>
+      <small class="text-muted">{{ post.posted.strftime('%Y-%m-%d') }}</small>
+      <span class="badge bg-secondary">{{ post.category.value }}</span>
+        {% if current_user.is_authenticated %}
+            <div>
+                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('post.update_post', id=post.id) }}">Edit</a>
+                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{{ url_for('post.delete_post', id=post.id) }}">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+    <h2 class="article-title">{{ post.title }}</h2>
+    <p class="article-content">{{ post.content }}</p>
+  </div>
+</article>
+{% endblock %}

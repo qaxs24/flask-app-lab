@@ -20,14 +20,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if 'products' in request.endpoint %}active{% endif %}" href="{{ url_for('products.products') }}">
+                    <a class="nav-link {% if request.endpoint and 'post' in request.endpoint %}active{% endif %}" href="{{ url_for('post.all_posts') }}">
+                        <i class="fa-solid fa-blog me-2"></i>Блог
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.endpoint and 'products' in request.endpoint %}active{% endif %}" href="{{ url_for('products.products') }}">
                         <i class="fa-solid fa-box me-2"></i>Товари
                     </a>
                 </li>
 
-                {% if 'username' in session %}
+                {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if 'profile' in request.endpoint %}active{% endif %}" href="{{ url_for('users.profile') }}">
+                        <a class="nav-link {% if request.endpoint and 'profile' in request.endpoint %}active{% endif %}" href="{{ url_for('users.profile') }}">
                             <i class="fa-solid fa-user me-2"></i>Профіль
                         </a>
                     </li>
@@ -38,8 +43,13 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if 'login' in request.endpoint %}active{% endif %}" href="{{ url_for('users.login') }}">
+                        <a class="nav-link {% if request.endpoint and 'login' in request.endpoint %}active{% endif %}" href="{{ url_for('users.login') }}">
                             <i class="fa-solid fa-right-to-bracket me-2"></i>Увійти
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint and 'register' in request.endpoint %}active{% endif %}" href="{{ url_for('users.register') }}">
+                            <i class="fa-solid fa-user-plus me-2"></i>Реєстрація
                         </a>
                     </li>
                 {% endif %}

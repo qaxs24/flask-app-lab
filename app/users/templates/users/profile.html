@@ -4,7 +4,7 @@
 <div class="container-fluid {{ request.cookies.get('theme', 'light') }}">
     <div class="profile-header mb-4">
         <h2>Профіль користувача</h2>
-        <p class="lead">Вітаємо, <strong>{{ session['username'] }}</strong>!</p>
+        <p class="lead">Вітаємо, <strong>{{ current_user.username }}</strong>!</p>
         <div>
             <a href="{{ url_for('users.logout') }}" class="btn btn-danger">Вийти</a>
         </div>

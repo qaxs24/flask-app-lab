@@ -1,23 +1,41 @@
 from flask import render_template, request, redirect, url_for, session, flash, make_response
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user, current_user, logout_user, login_required
 from app.users import users_bp
-from app.forms import LoginForm
+from app.forms import LoginForm, RegistrationForm
+from app.models import User
+from app import db
+
+@users_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('users.profile'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        flash('Ваш акаунт створено! Тепер ви можете увійти', 'success')
+        return redirect(url_for('users.login'))
+    return render_template('users/register.html', title='Реєстрація', form=form)
 
 @users_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('users.profile'))
     form = LoginForm()
     if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
-        remember = form.remember.data
-        
-        if username == 'admin' and password == 'password':
-            session['username'] = username
-            flash_message = f'Ви успішно увійшли як {username}.'
-            if remember:
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            flash_message = f'Ви успішно увійшли як {user.username}.'
+            if form.remember.data:
                 flash_message += ' Опція "Запам\'ятати мене" була обрана.'
             
             flash(flash_message, 'success')
-            return redirect(url_for('users.profile'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(url_for('users.profile'))
         else:
             flash('Неправильне ім\'я користувача або пароль.', 'danger')
             return redirect(url_for('users.login'))
@@ -25,11 +43,8 @@ def login():
     return render_template('users/login.html', title="Вхід", form=form)
 
 @users_bp.route('/profile', methods=['GET', 'POST'])
+@login_required
 def profile():
-    if 'username' not in session:
-        flash('Будь ласка, увійдіть, щоб побачити цю сторінку.', 'warning')
-        return redirect(url_for('users.login'))
-
     if request.method == 'POST':
         action = request.form.get('action')
         resp = make_response(render_template('users/profile.html', title="Профіль"))
@@ -65,7 +80,7 @@ def profile():
 
 @users_bp.route('/logout')
 def logout():
-    session.pop('username', None)
+    logout_user()
     flash('Ви вийшли з системи.', 'info')
     return redirect(url_for('users.login'))
 

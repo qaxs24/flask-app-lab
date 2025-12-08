@@ -1,0 +1,15 @@
+.post-card {
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transform: scale(1.02);
+}
+
+.article-title {
+    color: #333;
+}
+
+.article-content {
+    white-space: pre-wrap;
+}
