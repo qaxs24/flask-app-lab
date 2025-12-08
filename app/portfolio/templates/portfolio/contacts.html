@@ -4,20 +4,24 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <h2>Контакти</h2>
-        <p>Якщо у вас є запитання, будь ласка, заповніть форму нижче.</p>
-        
-        <form method="POST" action="{{ url_for('portfolio.contacts') }}" novalidate>
-            {{ form.hidden_tag() }} 
+        <div class="content-card fade-in-up">
+            <h2 class="section-title mb-4">Контакти</h2>
+            <p class="mb-5 text-muted">Якщо у вас є запитання, будь ласка, заповніть форму нижче.</p>
 
-            {{ render_field(form.name) }}
-            {{ render_field(form.email) }}
-            {{ render_field(form.phone) }}
-            {{ render_field(form.subject) }}
-            {{ render_field(form.message) }}
-            
-            {{ form.submit(class="btn btn-primary") }}
-        </form>
+            <form method="POST" action="{{ url_for('portfolio.contacts') }}" novalidate>
+                {{ form.hidden_tag() }}
+
+                {{ render_field(form.name) }}
+                {{ render_field(form.email) }}
+                {{ render_field(form.phone) }}
+                {{ render_field(form.subject) }}
+                {{ render_field(form.message) }}
+
+                <div class="d-grid mt-4">
+                    {{ form.submit(class="btn btn-primary btn-lg") }}
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
