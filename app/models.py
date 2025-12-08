@@ -1,4 +1,4 @@
-from app import db, login_manager
+from app import db, login_manager, bcrypt
 from flask_login import UserMixin
 from datetime import datetime
 
@@ -15,6 +15,12 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)

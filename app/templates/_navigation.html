@@ -32,8 +32,13 @@
 
                 {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint and 'profile' in request.endpoint %}active{% endif %}" href="{{ url_for('users.profile') }}">
+                        <a class="nav-link {% if request.endpoint and 'account' in request.endpoint %}active{% endif %}" href="{{ url_for('users.account') }}">
                             <i class="fa-solid fa-user me-2"></i>Профіль
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint and 'users_list' in request.endpoint %}active{% endif %}" href="{{ url_for('users.users_list') }}">
+                            <i class="fa-solid fa-users me-2"></i>Користувачі
                         </a>
                     </li>
                     <li class="nav-item">

@@ -1,5 +1,4 @@
 from flask import render_template, request, redirect, url_for, session, flash, make_response
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, current_user, logout_user, login_required
 from app.users import users_bp
 from app.forms import LoginForm, RegistrationForm
@@ -9,11 +8,11 @@ from app import db
 @users_bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('users.profile'))
+        return redirect(url_for('users.account'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data)
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Ваш акаунт створено! Тепер ви можете увійти', 'success')
@@ -23,11 +22,11 @@ def register():
 @users_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('users.profile'))
+        return redirect(url_for('users.account'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
-        if user and check_password_hash(user.password, form.password.data):
+        if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
             flash_message = f'Ви успішно увійшли як {user.username}.'
             if form.remember.data:
@@ -35,19 +34,19 @@ def login():
             
             flash(flash_message, 'success')
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('users.profile'))
+            return redirect(next_page) if next_page else redirect(url_for('users.account'))
         else:
             flash('Неправильне ім\'я користувача або пароль.', 'danger')
             return redirect(url_for('users.login'))
             
     return render_template('users/login.html', title="Вхід", form=form)
 
-@users_bp.route('/profile', methods=['GET', 'POST'])
+@users_bp.route('/account', methods=['GET', 'POST'])
 @login_required
-def profile():
+def account():
     if request.method == 'POST':
         action = request.form.get('action')
-        resp = make_response(render_template('users/profile.html', title="Профіль"))
+        resp = make_response(render_template('users/account.html', title="Профіль"))
 
         if action == 'add_cookie':
             key = request.form.get('cookie_key')
@@ -76,7 +75,14 @@ def profile():
         
         return resp
 
-    return render_template('users/profile.html', title="Профіль")
+    return render_template('users/account.html', title="Профіль")
+
+@users_bp.route('/users')
+@login_required
+def users_list():
+    users = User.query.all()
+    count = User.query.count()
+    return render_template('users/users_list.html', users=users, count=count, title="Користувачі")
 
 @users_bp.route('/logout')
 def logout():
@@ -86,7 +92,7 @@ def logout():
 
 @users_bp.route('/change-theme/<theme>')
 def change_theme(theme):
-    resp = make_response(redirect(request.referrer or url_for('users.profile')))
+    resp = make_response(redirect(request.referrer or url_for('users.account')))
     if theme in ['light', 'dark']:
         resp.set_cookie('theme', theme, max_age=60*60*24*30)
         flash(f'Тему змінено на "{theme}".', 'info')

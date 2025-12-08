@@ -17,7 +17,7 @@
                     <h4>Керування кукі</h4>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ url_for('users.profile') }}" class="mb-4">
+                    <form method="post" action="{{ url_for('users.account') }}" class="mb-4">
                         <h5>Додати/Оновити кукі</h5>
                         <div class="mb-2">
                             <label for="cookie_key" class="form-label">Ключ</label>
@@ -34,7 +34,7 @@
                         <button type="submit" name="action" value="add_cookie" class="btn btn-success">Зберегти кукі</button>
                     </form>
                     <hr>
-                    <form method="post" action="{{ url_for('users.profile') }}">
+                    <form method="post" action="{{ url_for('users.account') }}">
                         <h5>Видалити кукі</h5>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="cookie_key_to_delete" placeholder="Введіть ключ для видалення">
