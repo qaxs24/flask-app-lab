@@ -3,7 +3,7 @@ from flask_login import current_user, login_required
 from app import db
 from app.posts import post_bp
 from app.posts.forms import PostForm
-from app.posts.models import Post, CategoryEnum
+from app.posts.models import Post, CategoryEnum, Tag
 from datetime import datetime
 
 @post_bp.route('/post/create', methods=['GET', 'POST'])
@@ -17,8 +17,11 @@ def create_post():
             category=CategoryEnum[form.category.data],
             is_active=form.enabled.data,
             posted=form.publish_date.data,
-            author=current_user.username if current_user.is_authenticated else 'Anonymous'
+            user_id=form.author_id.data
         )
+        for tag_id in form.tags.data:
+            tag = Tag.query.get(tag_id)
+            post.tags.append(tag)
         db.session.add(post)
         db.session.commit()
         flash('Пост успішно створено!', 'success')
@@ -51,6 +54,11 @@ def update_post(id):
         post.category = CategoryEnum[form.category.data]
         post.is_active = form.enabled.data
         post.posted = form.publish_date.data
+        post.user_id = form.author_id.data
+        post.tags = []
+        for tag_id in form.tags.data:
+            tag = Tag.query.get(tag_id)
+            post.tags.append(tag)
         db.session.commit()
         flash('Пост оновлено!', 'success')
         return redirect(url_for('post.detail_post', id=post.id))
@@ -60,6 +68,8 @@ def update_post(id):
         form.category.data = post.category.name
         form.enabled.data = post.is_active
         form.publish_date.data = post.posted
+        form.author_id.data = post.user_id
+        form.tags.data = [t.id for t in post.tags]
         
     return render_template('posts/add_post.html', title='Редагувати пост', form=form, legend='Редагувати пост')
 
