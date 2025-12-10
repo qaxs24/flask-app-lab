@@ -18,12 +18,12 @@ class UsersBlueprintTestCase(unittest.TestCase):
     def test_register_page_loads(self):
         response = self.client.get('/register')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'\xd0\xa0\xd0\xb5\xd1\x94\xd1\x81\xd1\x82\xd1\x80\xd0\xb0\xd1\x86\xd1\x96\xd1\x8f', response.data) # 'Реєстрація' encoded
+        self.assertIn(b'\xd0\xa0\xd0\xb5\xd1\x94\xd1\x81\xd1\x82\xd1\x80\xd0\xb0\xd1\x86\xd1\x96\xd1\x8f', response.data)
 
     def test_login_page_loads(self):
         response = self.client.get('/login')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'\xd0\x92\xd1\x85\xd1\x96\xd0\xb4', response.data) # 'Вхід' encoded
+        self.assertIn(b'\xd0\x92\xd1\x85\xd1\x96\xd0\xb4', response.data)
 
     def test_user_registration(self):
         response = self.client.post('/register', data={
@@ -38,25 +38,20 @@ class UsersBlueprintTestCase(unittest.TestCase):
         self.assertTrue(user.check_password('password'))
 
     def test_login_logout(self):
-        # Create user first
         user = User(username='testuser', email='test@example.com')
         user.set_password('password')
         db.session.add(user)
         db.session.commit()
 
-        # Login
         response = self.client.post('/login', data={
             'username': 'testuser',
             'password': 'password'
         }, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        # Check if redirected to account page (check for 'Профіль' text)
         self.assertIn(b'\xd0\x9f\xd1\x80\xd0\xbe\xd1\x84\xd1\x96\xd0\xbb\xd1\x8c', response.data)
 
-        # Logout
         response = self.client.get('/logout', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        # Check if redirected to login page
         self.assertIn(b'\xd0\x92\xd1\x85\xd1\x96\xd0\xb4', response.data)
 
 if __name__ == "__main__":

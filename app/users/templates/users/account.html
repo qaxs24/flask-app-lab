@@ -2,11 +2,105 @@
 
 {% block content %}
 <div class="container-fluid {{ request.cookies.get('theme', 'light') }}">
-    <div class="profile-header mb-4">
-        <h2>Профіль користувача</h2>
-        <p class="lead">Вітаємо, <strong>{{ current_user.username }}</strong>!</p>
-        <div>
-            <a href="{{ url_for('users.logout') }}" class="btn btn-danger">Вийти</a>
+    <div class="row">
+        <!-- Profile Info Section -->
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Профіль користувача</h4>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{{ url_for('static', filename='images/' + (current_user.image or 'profile_default.jpg')) }}" 
+                         alt="Фото профілю" 
+                         class="rounded-circle mb-3" 
+                         style="width: 150px; height: 150px; object-fit: cover;">
+                    <h5>{{ current_user.username }}</h5>
+                    <p class="text-muted">{{ current_user.email }}</p>
+                    {% if current_user.about_me %}
+                    <p><strong>Про мене:</strong> {{ current_user.about_me }}</p>
+                    {% endif %}
+                    {% if current_user.last_seen %}
+                    <p class="text-muted small">Останній візит: {{ current_user.last_seen.strftime('%d.%m.%Y %H:%M') }}</p>
+                    {% endif %}
+                    <a href="{{ url_for('users.logout') }}" class="btn btn-danger">Вийти</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Profile Form -->
+        <div class="col-lg-8 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Редагувати профіль</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('users.account') }}" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="mb-3">
+                            {{ form.username.label(class="form-label") }}
+                            {{ form.username(class="form-control" + (" is-invalid" if form.username.errors else "")) }}
+                            {% for error in form.username.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-control" + (" is-invalid" if form.email.errors else "")) }}
+                            {% for error in form.email.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.about_me.label(class="form-label") }}
+                            {{ form.about_me(class="form-control", rows="3") }}
+                            {% for error in form.about_me.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.picture.label(class="form-label") }}
+                            {{ form.picture(class="form-control") }}
+                            <small class="text-muted">Дозволені формати: jpg, png, jpeg</small>
+                            {% for error in form.picture.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <hr>
+                        <h5>Зміна пароля</h5>
+                        
+                        <div class="mb-3">
+                            {{ form.current_password.label(class="form-label") }}
+                            {{ form.current_password(class="form-control" + (" is-invalid" if form.current_password.errors else "")) }}
+                            {% for error in form.current_password.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.new_password.label(class="form-label") }}
+                            {{ form.new_password(class="form-control" + (" is-invalid" if form.new_password.errors else "")) }}
+                            {% for error in form.new_password.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.confirm_new_password.label(class="form-label") }}
+                            {{ form.confirm_new_password(class="form-control" + (" is-invalid" if form.confirm_new_password.errors else "")) }}
+                            {% for error in form.confirm_new_password.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        
+                        {{ form.submit(class="btn btn-primary") }}
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -18,14 +112,15 @@
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{ url_for('users.account') }}" class="mb-4">
+                        <input type="hidden" name="cookie_action" value="true">
                         <h5>Додати/Оновити кукі</h5>
                         <div class="mb-2">
                             <label for="cookie_key" class="form-label">Ключ</label>
-                            <input type="text" class="form-control" name="cookie_key" id="cookie_key" required>
+                            <input type="text" class="form-control" name="cookie_key" id="cookie_key">
                         </div>
                         <div class="mb-2">
                             <label for="cookie_value" class="form-label">Значення</label>
-                            <input type="text" class="form-control" name="cookie_value" id="cookie_value" required>
+                            <input type="text" class="form-control" name="cookie_value" id="cookie_value">
                         </div>
                         <div class="mb-3">
                             <label for="cookie_expiry" class="form-label">Термін дії (в секундах)</label>
@@ -35,6 +130,7 @@
                     </form>
                     <hr>
                     <form method="post" action="{{ url_for('users.account') }}">
+                        <input type="hidden" name="cookie_action" value="true">
                         <h5>Видалити кукі</h5>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="cookie_key_to_delete" placeholder="Введіть ключ для видалення">

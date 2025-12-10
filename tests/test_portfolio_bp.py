@@ -8,13 +8,11 @@ class PortfolioBlueprintTestCase(unittest.TestCase):
         self.client = app.test_client()
 
     def test_resume_page(self):
-        """Тест доступності сторінки резюме."""
         response = self.client.get("/resume")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Full-stack", response.data)   
     
     def test_contacts_page(self):
-        """Тест доступності сторінки контактів."""
         response = self.client.get("/contacts")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Email", response.data)

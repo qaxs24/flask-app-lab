@@ -27,7 +27,6 @@ class Post(db.Model):
     posted = db.Column(db.DateTime, default=datetime.utcnow)
     category = db.Column(db.Enum(CategoryEnum), default=CategoryEnum.other)
     is_active = db.Column(db.Boolean, default=True)
-    # author = db.Column(db.String(20), default='Anonymous')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
     author = db.relationship('User', backref=db.backref('posts', lazy=True))
     tags = db.relationship('Tag', secondary=post_tags, backref=db.backref('posts', lazy='dynamic'))

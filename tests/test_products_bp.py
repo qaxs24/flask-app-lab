@@ -7,7 +7,6 @@ class ProductsBlueprintTestCase(unittest.TestCase):
         self.client = app.test_client()
     
     def test_products_page(self):
-        """Тест сторінки зі списком товарів."""
         response = self.client.get("/products")
         self.assertEqual(response.status_code, 200)
         self.assertIn(b"Products list", response.data)

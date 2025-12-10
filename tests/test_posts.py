@@ -13,7 +13,6 @@ class TestPosts(unittest.TestCase):
         db.create_all()
         self.client = self.app.test_client()
 
-        # Create a test user
         self.user = User(username='testuser', email='test@example.com', password=generate_password_hash('password'))
         db.session.add(self.user)
         db.session.commit()
@@ -40,7 +39,6 @@ class TestPosts(unittest.TestCase):
         ), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
         
-        # Check if post exists in DB
         post = Post.query.first()
         self.assertIsNotNone(post)
         self.assertEqual(post.title, 'Test Post')
@@ -90,7 +88,6 @@ class TestPosts(unittest.TestCase):
             content='Content',
             category='news'
         ), follow_redirects=True)
-        # Should redirect to login page
         self.assertIn(b'Please log in', response.data)
 
 if __name__ == '__main__':
