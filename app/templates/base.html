@@ -13,7 +13,7 @@
     <title>{{ title }} - Моє Портфоліо</title>
 </head>
 </html>
-<body>
+<body class="{{ request.cookies.get('theme', 'light') }}" data-bs-theme="{{ request.cookies.get('theme', 'light') }}">
     {% include '_navigation.html' %}
 
     <div class="container mt-4 mb-5">

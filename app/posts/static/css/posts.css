@@ -13,3 +13,25 @@
 .article-content {
     white-space: pre-wrap;
 }
+
+/* Dark mode for posts */
+.dark .article-title {
+    color: #e6edf3;
+}
+
+.dark .post-card {
+    background-color: #161b22;
+    border-color: #30363d;
+}
+
+.dark .post-card:hover {
+    border-color: #484f58;
+}
+
+.dark .post-meta {
+    color: #8b949e;
+}
+
+.dark .post-excerpt {
+    color: #8b949e;
+}
