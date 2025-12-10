@@ -51,7 +51,7 @@ class LoginForm(FlaskForm):
                            validators=[DataRequired()])
     
     password = PasswordField('Пароль', 
-                             validators=[DataRequired(), Length(min=4, max=10)])
+                             validators=[DataRequired(), Length(min=4, max=32)])
     
     remember = BooleanField('Запам\'ятати мене')
     
